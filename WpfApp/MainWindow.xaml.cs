@@ -38,9 +38,11 @@ namespace WpfApp
             this.Urls = File.ReadAllLines(@"urls.txt").ToList();
         }
 
+        static HttpClient client = new HttpClient();
+
         async Task GetTask(string uri)
         {
-            HttpClient client = new HttpClient();
+            //HttpClient client = new HttpClient();
             try
             {
                 HttpResponseMessage response = await client.GetAsync(uri);
@@ -61,6 +63,7 @@ namespace WpfApp
             {
                 MessageBox.Show(e.Message);
             }
+            //client.Dispose();
         }
 
         private int CalculateA(string html)
@@ -86,7 +89,6 @@ namespace WpfApp
                     s = item.Key;
                 }
             }
-
             return s;
         }
 
